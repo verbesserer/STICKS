@@ -1,6 +1,71 @@
-# STICKS - Project Structure for STICKS, Roblox's first DRNG, Powered by AI & a developer with too much freetime.
+🧠 STICKS – Dev Summary & Long-Term Goals
+✅ Primary Game Vision
+A scalable, dopamine-driven stick collection game with:
 
+Randomly generated sticks (color, material, traits, enchantments, spirits, rarity, shape, size)
 
+Player progression: levels, titles, coins, unlockables
+
+Combat-ready architecture for future PvP/PvE
+
+High polish & replayability through rarity, FX, events, and dopamine feedback
+
+🎯 Core Systems (✅ = implemented, ⚠️ = WIP)
+System	Status	Notes
+Stick Generation (2-Phase: Base → Finalize)	✅	Works as expected
+Color & Material Application	⚠️	Material still bugged
+Random Model Selection (shape skewed by rarity)	✅	Needs model weighting fine-tune
+Size Variety (with scaling)	✅	Sizing logic works
+Attachment Points (GripPoint, EffectOrigin)	✅	Implemented across all models
+Inventory & Pickup Logic	✅	Finalize after pickup confirmation
+Event Support (e.g. color/material overrides)	⚠️	Design-ready, not yet active
+Enchant / Spirit Visual FX	⏳	Will use FX on EffectOrigin
+Combat Ready Architecture	⏳	All sticks will have universal grip system
+Particle Effect Management	⏳	Attach FX to EffectOrigin
+Equip Animation System	⏳	Future idea: anime-style equip cut-in
+DataStore / Save System	✅	Player inventories persist
+🗂️ Dev File Structure
+Scripts are organized under folders (Modules/, Server/, etc.)
+
+Stick models live in ReplicatedStorage > Assets > StickModels > [Category]
+
+All stick models use:
+
+✅ PrimaryPart: Handle
+
+✅ Attachments: GripPoint, EffectOrigin
+
+🧾 Game Design Rules
+Rarity = dynamically calculated based on traits, enchant, spirit, shape, & size bonus
+
+All sticks must be:
+
+Spawned visually first (GenerateBaseStick)
+
+Finalized with game data (FinalizeStick) only if picked up
+
+Event overrides must allow easy injection of:
+
+Color palette
+
+Material pool
+
+Rarity weight tweaks
+
+Special FX
+
+🛠️ Immediate Fixes (as of last session)
+ Fix Material not applying correctly to FBX imported meshes
+
+ Ensure Basic models are 60%+ of spawn weight (too many Fancy currently)
+
+ Add safe fallback if ModelID fails (prevent nil crashes)
+
+ Ensure scaling affects Handle properly (size is working, but double check visuals)
+
+ Finalize stick reveal system
+
+ Prepare coin reward system (for pickup, events, selling, etc.)
   16:59:39.621  > local function printDescendants(object, indent)
 	indent = indent or ""
 	for _, child in ipairs(object:GetChildren()) do
